@@ -69,7 +69,7 @@ const express = require("express");
 
 const app = express();
 
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
@@ -145,7 +145,7 @@ const { executablePath } = require("puppeteer");
 //   return dailyResults;
 // }
 
-app.get("/", async (req, res) => {
+app.get("/trends", async (req, res) => {
   async function fillTrendsDataFromPage(page) {
     let count = 0;
     while (count < 5) {
@@ -215,6 +215,10 @@ app.get("/", async (req, res) => {
   getGoogleTrendsDailyResults().then((result) => res.json(result).status(200));
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+app.get("/", (req, res) => {
+  res.sendStatus(200);
+});
+
+app.listen(PORT, () => {
+  console.log(`Example app listening on PORT ${PORT}`);
 });
