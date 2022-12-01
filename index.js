@@ -188,16 +188,16 @@ app.get("/trends", async (req, res) => {
 
   async function getGoogleTrendsDailyResults() {
     const browser = await puppeteer.launch({
-      headless: false,
-      args: [
-        "--no-sandbox",
-        "--disable-setuid-sandbox",
-        "--window-size=1200,700",
-      ],
+      headless: true,
+      // args: [
+      //   "--no-sandbox",
+      //   "--disable-setuid-sandbox",
+      //   "--window-size=1200,700",
+      // ],
       executablePath: executablePath(),
     });
     const page = await browser.newPage();
-    page.setViewport({ width: 1200, height: 700 });
+    //page.setViewport({ width: 1200, height: 700 });
 
     const URL = `${baseURL}/trends/trendingsearches/daily?geo=${countryCode}&hl=en`;
 
