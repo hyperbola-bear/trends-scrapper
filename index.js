@@ -32,7 +32,7 @@ app.get("/trends", async (req, res) => {
       return Array.from(document.querySelectorAll(".feed-list-wrapper")).map(
         (el) => ({
           date: el.querySelector(".content-header-title").textContent.trim(),
-          data: Array.from(el.querySelectorAll("feed-item")).map((el) => ({
+          data: Array.from(el.querySelector("feed-item")).map((el) => ({
             index: el.querySelector(".index")?.textContent.trim(),
             title: el.querySelector(".title a")?.textContent.trim(),
             //   titleLink: `${baseURL}${el
