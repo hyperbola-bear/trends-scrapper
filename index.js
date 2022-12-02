@@ -32,16 +32,15 @@ app.get("/trends", async (req, res) => {
       return Array.from(document.querySelectorAll(".feed-list-wrapper")).map(
         (el) => ({
           date: el.querySelector(".content-header-title").textContent.trim(),
-          data: Array.from(el.querySelectorAll("feed-item")).map((el, idx) =>
-            idx < 3
-              ? {
-                  index: el.querySelector(".index")?.textContent.trim(),
-                  title: el.querySelector(".title a")?.textContent.trim(),
-                  searches: el
-                    .querySelector(".search-count-title")
-                    ?.textContent.trim(),
-                }
-              : {}
+          data: Array.from(el.querySelectorAll("feed-item")).map(
+            (el, idx) =>
+              idx < 3 && {
+                index: el.querySelector(".index")?.textContent.trim(),
+                title: el.querySelector(".title a")?.textContent.trim(),
+                searches: el
+                  .querySelector(".search-count-title")
+                  ?.textContent.trim(),
+              }
           ),
         })
       );
