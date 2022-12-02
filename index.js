@@ -193,7 +193,7 @@ app.get("/trends", async (req, res) => {
 
   async function getGoogleTrendsDailyResults() {
     const browser = await puppeteer.launch({
-      headless: "chrome",
+      headless: false,
       // args: [
       //   "--no-sandbox",
       //   "--disable-setuid-sandbox",
