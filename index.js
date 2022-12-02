@@ -32,27 +32,20 @@ app.get("/trends", async (req, res) => {
       return Array.from(document.querySelectorAll(".feed-list-wrapper")).map(
         (el) => ({
           date: el.querySelector(".content-header-title").textContent.trim(),
-          data: Array.from(el.querySelector("feed-item")).map((el) => ({
+          data: Array.from(el.querySelectorAll("feed-item")).map((el) => ({
             index: el.querySelector(".index")?.textContent.trim(),
             title: el.querySelector(".title a")?.textContent.trim(),
-            //   titleLink: `${baseURL}${el
-            //     .querySelector(".title a")
-            //     ?.getAttribute("href")}`,
-            //   subtitle: el.querySelector(".summary-text a")?.textContent.trim(),
-            //   subtitleLink: el
-            //     .querySelector(".summary-text a")
-            //     ?.getAttribute("href"),
-            //   source: el
-            //     .querySelector(".source-and-time span:first-child")
-            //     ?.textContent.trim(),
-            //   published: el
-            //     .querySelector(".source-and-time span:last-child")
-            //     ?.textContent.trim(),
             searches: el
               .querySelector(".search-count-title")
               ?.textContent.trim(),
-            //thumbnail: el.getAttribute("image-url"),
           })),
+          // data: [
+          //   {
+          //     index: el.querySelector(".index")?.textContent.trim(),
+          //     title: el.querySelector(".title a")?.textContent.trim(),
+          //     searches: el.querySelector(".search-count-title")?.textContent.trim(),
+          //   },
+          // ],
         })
       );
     }, baseURL);
