@@ -4,7 +4,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-const PCR = require("puppeteer-chromium-resolver");
+//const PCR = require("puppeteer-chromium-resolver");
 
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
