@@ -148,9 +148,9 @@ const { executablePath } = require("puppeteer");
 // }
 
 app.get("/trends", async (req, res) => {
-  const stats = await PCR();
+  //const stats = await PCR();
 
-  process.env.PUPPETEER_EXECUTABLE_PATH = stats.executablePath;
+  //process.env.PUPPETEER_EXECUTABLE_PATH = stats.executablePath;
   async function fillTrendsDataFromPage(page) {
     let count = 0;
     while (count < 5) {
