@@ -71,6 +71,8 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
+const PCR = require("puppeteer-chromium-resolver");
+
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 
@@ -146,6 +148,9 @@ const { executablePath } = require("puppeteer");
 // }
 
 app.get("/trends", async (req, res) => {
+  const stats = await PCR();
+
+  process.env.PUPPETEER_EXECUTABLE_PATH = stats.executablePath;
   async function fillTrendsDataFromPage(page) {
     let count = 0;
     while (count < 5) {
@@ -188,13 +193,13 @@ app.get("/trends", async (req, res) => {
 
   async function getGoogleTrendsDailyResults() {
     const browser = await puppeteer.launch({
-      headless: true,
+      headless: "chrome",
       // args: [
       //   "--no-sandbox",
       //   "--disable-setuid-sandbox",
       //   "--window-size=1200,700",
       // ],
-      executablePath: executablePath(),
+      executablePath: stats.executablePath,
     });
     const page = await browser.newPage();
     //page.setViewport({ width: 1200, height: 700 });
